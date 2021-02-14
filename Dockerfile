@@ -39,10 +39,12 @@ RUN apt-get update && apt-get install -y \
     libxml2-utils \
     git \
     curl \
+    tidy \
     && git clone https://github.com/OfficialBoomi/boomicicd-cli.git \
     && mkdir ${WORKSPACE}
 
 WORKDIR ${SCRIPTS_HOME}
 
 ADD entrypoint.sh ${SCRIPTS_HOME}/bin/entrypoint.sh
-ENTRYPOINT [ "entrypoint.sh" ]
+ADD atom_install64.sh /app/boomicicd-cli/cli
+ENTRYPOINT [ "/bin/bash","-x", "entrypoint.sh" ]
