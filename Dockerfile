@@ -40,6 +40,8 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     tidy \
+    unzip \
+    openjdk-11-jdk \
     && git clone https://github.com/OfficialBoomi/boomicicd-cli.git \
     && mkdir ${WORKSPACE}
 
