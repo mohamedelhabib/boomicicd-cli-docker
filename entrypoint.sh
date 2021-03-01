@@ -7,4 +7,4 @@ if [ $# -eq 0 ]
   echo "No arguments supplied. Launch one of the following command $(ls bin/*.sh)"
 fi
 export SHELLOPTS
-exec $@
+exec "$@"
