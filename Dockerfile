@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM openjdk:8u282-jre-slim
 
 WORKDIR /app
 
@@ -37,12 +37,12 @@ ENV PATH="${SCRIPTS_HOME}/bin:${PATH}"
 RUN apt-get update && apt-get install -y \
     jq \
     libxml2-utils \
-    git \
     curl \
     tidy \
     unzip \
-    openjdk-11-jdk \
-    && git clone https://github.com/OfficialBoomi/boomicicd-cli.git \
+    # openjdk-11-jdk \
+    && curl -sLO https://github.com/OfficialBoomi/boomicicd-cli/archive/refs/heads/master.zip \
+    && unzip master.zip && rm -fr master.zip && mv boomicicd-cli-master boomicicd-cli \
     && mkdir ${WORKSPACE}
 
 WORKDIR ${SCRIPTS_HOME}
