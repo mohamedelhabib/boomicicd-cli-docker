@@ -1,0 +1,8 @@
+{
+  "@type": "ExecutionRequest",
+  "atomId": "${atomId}",
+  "processId": "${processId}",
+  "ProcessProperties" : {
+      "ProcessProperty" : ${processProperties}
+  }
+}

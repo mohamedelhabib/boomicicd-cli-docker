@@ -47,6 +47,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR ${SCRIPTS_HOME}
 
+ADD executeExecutionRequest.sh ${SCRIPTS_HOME}/bin/executeExecutionRequest.sh
+ADD executeExecutionRequest.json ${SCRIPTS_HOME}/json/executeExecutionRequest.json
 ADD entrypoint.sh ${SCRIPTS_HOME}/bin/entrypoint.sh
 ADD atom_install64.sh /app/boomicicd-cli/cli
 ENTRYPOINT [ "/bin/bash","-x", "entrypoint.sh" ]
