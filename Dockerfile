@@ -1,4 +1,4 @@
-FROM openjdk:8u282-jre-slim
+FROM ubuntu:20.10
 
 WORKDIR /app
 
@@ -40,10 +40,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     tidy \
     unzip \
-    # openjdk-11-jdk \
     && curl -sLO https://github.com/OfficialBoomi/boomicicd-cli/archive/refs/heads/master.zip \
     && unzip master.zip && rm -fr master.zip && mv boomicicd-cli-master boomicicd-cli \
-    && mkdir ${WORKSPACE}
+    && mkdir ${WORKSPACE} \
+    && apt-get -y remove unzip
 
 WORKDIR ${SCRIPTS_HOME}
 
