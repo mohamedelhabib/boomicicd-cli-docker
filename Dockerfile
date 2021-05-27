@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR ${SCRIPTS_HOME}
 
+ADD queryExecutionRecordAsync.sh ${SCRIPTS_HOME}/bin/queryExecutionRecordAsync.sh
 ADD executeExecutionRequest.sh ${SCRIPTS_HOME}/bin/executeExecutionRequest.sh
 ADD executeExecutionRequest.json ${SCRIPTS_HOME}/json/executeExecutionRequest.json
 ADD entrypoint.sh ${SCRIPTS_HOME}/bin/entrypoint.sh
