@@ -34,16 +34,17 @@ ENV SLEEP_TIMER=0.2
 
 ENV PATH="${SCRIPTS_HOME}/bin:${PATH}"
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     jq \
     libxml2-utils \
-    curl \
+    curl ca-certificates \
     tidy \
     unzip \
     && curl -sLO https://github.com/OfficialBoomi/boomicicd-cli/archive/refs/heads/master.zip \
     && unzip master.zip && rm -fr master.zip && mv boomicicd-cli-master boomicicd-cli \
     && mkdir ${WORKSPACE} \
-    && apt-get -y remove unzip
+    && apt-get -y remove unzip \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${SCRIPTS_HOME}
 
