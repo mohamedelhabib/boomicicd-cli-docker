@@ -1,6 +1,7 @@
 #!/bin/bash
 export baseURL=https://api.boomi.com/api/rest/v1/${accountId}
-# set -x
+
+if [ "${DEBUG_MODE}" == "1" ] ; then set -x ; fi
 
 if [ $# -eq 0 ]
   then

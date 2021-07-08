@@ -33,6 +33,7 @@ ENV VERBOSE="false"
 ENV SLEEP_TIMER=0.2
 
 ENV PATH="${SCRIPTS_HOME}/bin:${PATH}"
+ENV DEBUG_MODE=""
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     jq \
@@ -53,4 +54,4 @@ ADD executeExecutionRequest.sh ${SCRIPTS_HOME}/bin/executeExecutionRequest.sh
 ADD executeExecutionRequest.json ${SCRIPTS_HOME}/json/executeExecutionRequest.json
 ADD entrypoint.sh ${SCRIPTS_HOME}/bin/entrypoint.sh
 ADD atom_install64.sh /app/boomicicd-cli/cli
-ENTRYPOINT [ "/bin/bash","-x", "entrypoint.sh" ]
+ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]
