@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:22.04
 
 WORKDIR /app
 
@@ -19,6 +19,7 @@ ENV gitUserName=""
 ENV gitUserEmail=""
 ENV gitRepoName="boomi-components"
 ENV gitOption="CLONE"
+ENV boomicicd_cli_version="a392bb4b4d7ae3101152a87894108061e87fd72b"
 
 ## Sonar stuff
 # If sonar scanner is installed locally then will use the local sonar scanner. Check the sonarScanner.sh
@@ -41,17 +42,18 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     curl ca-certificates \
     tidy \
     unzip \
-    && curl -sLO https://github.com/OfficialBoomi/boomicicd-cli/archive/refs/heads/master.zip \
-    && unzip master.zip && rm -fr master.zip && mv boomicicd-cli-master boomicicd-cli \
+    && curl -sLO https://github.com/OfficialBoomi/boomicicd-cli/archive/${boomicicd_cli_version}.zip \
+    && unzip ${boomicicd_cli_version}.zip && rm -fr ${boomicicd_cli_version}.zip \
+    && mv boomicicd-cli-${boomicicd_cli_version} boomicicd-cli \
     && mkdir ${WORKSPACE} \
     && apt-get -y remove unzip \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${SCRIPTS_HOME}
 
-ADD queryExecutionRecordAsync.sh ${SCRIPTS_HOME}/bin/queryExecutionRecordAsync.sh
-ADD executeExecutionRequest.sh ${SCRIPTS_HOME}/bin/executeExecutionRequest.sh
-ADD executeExecutionRequest.json ${SCRIPTS_HOME}/json/executeExecutionRequest.json
+ADD actions/executeExecutionRequest/queryExecutionRecordAsync.sh ${SCRIPTS_HOME}/bin/queryExecutionRecordAsync.sh
+ADD actions/executeExecutionRequest/executeExecutionRequest.sh ${SCRIPTS_HOME}/bin/executeExecutionRequest.sh
+ADD actions/executeExecutionRequest/executeExecutionRequest.json ${SCRIPTS_HOME}/json/executeExecutionRequest.json
 ADD entrypoint.sh ${SCRIPTS_HOME}/bin/entrypoint.sh
 ADD atom_install64.sh /app/boomicicd-cli/cli
 ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]
