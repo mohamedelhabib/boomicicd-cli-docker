@@ -54,6 +54,7 @@ WORKDIR ${SCRIPTS_HOME}
 ADD actions/executeExecutionRequest/queryExecutionRecordAsync.sh ${SCRIPTS_HOME}/bin/queryExecutionRecordAsync.sh
 ADD actions/executeExecutionRequest/executeExecutionRequest.sh ${SCRIPTS_HOME}/bin/executeExecutionRequest.sh
 ADD actions/executeExecutionRequest/executeExecutionRequest.json ${SCRIPTS_HOME}/json/executeExecutionRequest.json
+ADD actions/deleteDeployedPackage/deleteDeployedPackage.sh ${SCRIPTS_HOME}/bin/deleteDeployedPackage.sh
 ADD entrypoint.sh ${SCRIPTS_HOME}/bin/entrypoint.sh
 ADD atom_install64.sh /app/boomicicd-cli/cli
 ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]
