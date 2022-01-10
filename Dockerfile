@@ -19,7 +19,7 @@ ENV gitUserName=""
 ENV gitUserEmail=""
 ENV gitRepoName="boomi-components"
 ENV gitOption="CLONE"
-ENV boomicicd_cli_version="a392bb4b4d7ae3101152a87894108061e87fd72b"
+ENV boomicicd_cli_version="4b0a2e8fe4f4f483c7928edfa2e1fcff2cdd00c7"
 
 ## Sonar stuff
 # If sonar scanner is installed locally then will use the local sonar scanner. Check the sonarScanner.sh
@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     curl ca-certificates \
     tidy \
     unzip \
-    && curl -sLO https://github.com/OfficialBoomi/boomicicd-cli/archive/${boomicicd_cli_version}.zip \
+    && curl -sLO https://github.com/mohamedelhabib/boomicicd-cli/archive/${boomicicd_cli_version}.zip \
     && unzip ${boomicicd_cli_version}.zip && rm -fr ${boomicicd_cli_version}.zip \
     && mv boomicicd-cli-${boomicicd_cli_version} boomicicd-cli \
     && mkdir ${WORKSPACE} \
